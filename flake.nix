@@ -10,6 +10,7 @@
         import = path: path; # let the module system know what we are exporting
       in
       {
+        # Device
         acer-aspire-4810t = import ./acer/aspire/4810t;
         airis-n990 = import ./airis/n990;
         aoostar-r1-n100 = import ./aoostar/r1/n100;
@@ -335,38 +336,49 @@
         tuxedo-pulse-15-gen2 = import ./tuxedo/pulse/15/gen2;
         xiaomi-redmibook-16-pro-2024 = import ./xiaomi/redmibook/16-pro-2024;
 
+        # CPU
         common-cpu-amd = import ./common/cpu/amd;
         common-cpu-amd-pstate = import ./common/cpu/amd/pstate.nix;
         common-cpu-amd-zenpower = import ./common/cpu/amd/zenpower.nix;
         common-cpu-amd-raphael-igpu = import ./common/cpu/amd/raphael/igpu.nix;
+
         common-cpu-intel = import ./common/cpu/intel;
+        common-cpu-intel-cpu-only = import ./common/cpu/intel/cpu-only.nix;
+        common-cpu-intel-coffee-lake = import ./common/cpu/intel/coffee-lake;
+        common-cpu-intel-haswell = import ./common/cpu/intel/haswell;
+
+        # GPU
+        common-gpu-amd = import ./common/gpu/amd;
+        common-gpu-amd-sea-islands = import ./common/gpu/amd/sea-islands;
+        common-gpu-amd-southern-islands = import ./common/gpu/amd/southern-islands;
+
+        common-gpu-intel = import ./common/gpu/intel;
+        common-gpu-intel-disable = import ./common/gpu/intel/disable.nix;
         common-gpu-intel-comet-lake =
           deprecated "992" "common-gpu-intel-comet-lake"
             (import ./common/gpu/intel/comet-lake);
-        common-cpu-intel-cpu-only = import ./common/cpu/intel/cpu-only.nix;
         common-gpu-intel-kaby-lake =
           deprecated "992" "common-gpu-intel-kaby-lake"
             (import ./common/gpu/intel/kaby-lake);
         common-gpu-intel-sandy-bridge =
           deprecated "992" "common-gpu-intel-sandy-bridge"
             (import ./common/gpu/intel/sandy-bridge);
-        common-gpu-amd = import ./common/gpu/amd;
-        common-gpu-amd-sea-islands = import ./common/gpu/amd/sea-islands;
-        common-gpu-amd-southern-islands = import ./common/gpu/amd/southern-islands;
-        common-gpu-intel = import ./common/gpu/intel;
-        common-gpu-intel-disable = import ./common/gpu/intel/disable.nix;
-        common-gpu-nvidia = import ./common/gpu/nvidia/prime.nix;
-        common-gpu-nvidia-sync = import ./common/gpu/nvidia/prime-sync.nix;
-        common-gpu-nvidia-nonprime = import ./common/gpu/nvidia;
+
+        common-gpu-nvidia = import ./common/gpu/nvidia;
         common-gpu-nvidia-disable = import ./common/gpu/nvidia/disable.nix;
-        common-hidpi = import ./common/hidpi.nix;
+        common-gpu-nvidia-prime-offload = import ./common/gpu/nvidia/prime.nix;
+        common-gpu-nvidia-prime-sync = import ./common/gpu/nvidia/prime-sync.nix;
+        common-gpu-nvidia-pascal = import ./common/gpu/nvidia/pascal;
+
+        # Other
         common-pc = import ./common/pc;
+        common-pc-ssd = import ./common/pc/ssd;
         common-pc-hdd = import ./common/pc/hdd;
         common-pc-laptop = import ./common/pc/laptop;
-        common-pc-laptop-acpi_call = throw "common-pc-laptop-acpi_call has been removed because it is obsolete: https://github.com/NixOS/nixos-hardware/issues/1114";
-        common-pc-laptop-hdd = import ./common/pc/laptop/hdd;
         common-pc-laptop-ssd = import ./common/pc/ssd;
-        common-pc-ssd = import ./common/pc/ssd;
+        common-pc-laptop-hdd = import ./common/pc/laptop/hdd;
+        common-pc-laptop-acpi_call = throw "common-pc-laptop-acpi_call has been removed because it is obsolete: https://github.com/NixOS/nixos-hardware/issues/1114";
+        common-hidpi = import ./common/hidpi.nix;
       };
   };
 }
